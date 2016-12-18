@@ -1,5 +1,9 @@
 package com.mygdx.game.Loading;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.Menu.MenuScreen;
 import com.mygdx.game.MyBaseClasses.MyScreen;
@@ -15,11 +19,20 @@ public class LoadingScreen extends MyScreen {
 	private Stage stage;
 	private OneSpriteStaticActor text;
 	private float elapsedTime = 0;
+	private BitmapFont bitmapFont = new BitmapFont();
 	private OneSpriteAnimatedActor picture;
+	GlyphLayout layout;
 
     public LoadingScreen(MyGdxGame game) {
 		super(game);
 		stage = new Stage();
+
+
+		FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Font/acmeregular.ttf"));
+		FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+		fontParameter.size = 25;
+		bitmapFont = fontGenerator.generateFont(fontParameter);
+
 		picture = new OneSpriteAnimatedActor("Menu/load.txt")
 		{
 			@Override
@@ -41,6 +54,8 @@ public class LoadingScreen extends MyScreen {
 		text = new OneSpriteStaticActor("Menu/justszoveg.png");
 		stage.addActor(text);
 		text.setPosition(stage.getWidth()/2-text.getWidth()/2,stage.getHeight()/2-text.getHeight()/2);
+
+
     }
 
 
@@ -56,9 +71,17 @@ public class LoadingScreen extends MyScreen {
 		stage.act(delta);
 		stage.draw();
 
+		layout = new GlyphLayout(bitmapFont, "Betöltés: "+(int)(Assets.manager.getProgress()*100f)+" %");
+		float width = layout.width;
+
+		spriteBatch.begin();
+		bitmapFont.draw(spriteBatch,"Betöltés: "+ ((int)(Assets.manager.getProgress()*100f))+" %", Gdx.graphics.getWidth()/2-width/2,text.getY()+80);
+		spriteBatch.end();
+
+
 		if (elapsedTime > 4.0 && Assets.manager.update()) {
 			Assets.afterLoaded();
-			game.setScreen(new MenuScreen(game));
+			//game.setScreen(new MenuScreen(game));
 		}
 
 		elapsedTime+=delta;
