@@ -53,7 +53,7 @@ public class MyGdxGame extends Game {
 	public TextButton.TextButtonStyle getTextButtonStyle() {
 
 		TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-		textButtonStyle.font = Assets.manager.get(Assets.ACMEREGULAR_FONT);
+		textButtonStyle.font = Assets.manager.get(Assets.APPLESTORMITA_FONT);
 
 		Pixmap p = new Pixmap(1,1, Pixmap.Format.RGB888);
 		p.setColor(0.1f,0.2f,0.2f, 0.5f);

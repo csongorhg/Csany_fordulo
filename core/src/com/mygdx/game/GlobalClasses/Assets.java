@@ -31,6 +31,17 @@ public class Assets {
 			= new AssetDescriptor<BitmapFont>(fontParameter.fontFileName, BitmapFont.class, fontParameter);
 
 
+	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameter2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+	static {
+		fontParameter2.fontFileName = "Font/AppleStormXbdIta.otf";
+		fontParameter2.fontParameters.size = 100;
+		fontParameter2.fontParameters.characters = CHARS;
+		fontParameter2.fontParameters.color = Color.WHITE;
+	}
+	public static final AssetDescriptor<BitmapFont> APPLESTORMITA_FONT
+			= new AssetDescriptor<BitmapFont>(fontParameter2.fontFileName, BitmapFont.class, fontParameter2);
+
+
 
 	//MUSIC
 	public static final AssetDescriptor<Music> EXTREMEACTION
@@ -68,6 +79,8 @@ public class Assets {
 		manager.load(EXTREMEACTION);
 
 		manager.load(ACMEREGULAR_FONT);
+
+		manager.load(APPLESTORMITA_FONT);
 	}
 
     public static void afterLoaded() {
