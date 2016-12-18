@@ -5,10 +5,13 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.OtherScr.OtherScreen;
 import com.mygdx.game.MyGdxGame;
+
+import Music.GameMusic;
 
 /**
  * Created by tuskeb on 2016. 09. 30..
@@ -17,6 +20,7 @@ public class MenuStage extends MyStage {
 
     private TextButton textButton, textButton2, textButton3, textButton4;
     private TextButton.TextButtonStyle textButtonStyle;
+    private GameMusic gameMusic;
 
     public MenuStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -27,6 +31,9 @@ public class MenuStage extends MyStage {
     {
 
         addBackEventStackListener();
+
+        gameMusic = new GameMusic();
+        gameMusic.addMusic(Assets.manager.get(Assets.TESTSOUND));
 
 
 
@@ -47,6 +54,8 @@ public class MenuStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+        gameMusic.act();
+        //gameMusic.setMusicVolume(gameMusic.getMusicVolume()-0.01f); //hangerő állítás
     }
 
     @Override

@@ -22,12 +22,12 @@ public class Assets {
 	//FONT
 	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameter = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 	static {
-		fontParameter.fontFileName = "Font/acmeregular.ttf";
+		fontParameter.fontFileName = "Font/Pixelfont.ttf";
 		fontParameter.fontParameters.size = 100;
 		fontParameter.fontParameters.characters = CHARS;
 		fontParameter.fontParameters.color = Color.WHITE;
 	}
-	public static final AssetDescriptor<BitmapFont> ACMEREGULAR_FONT
+	public static final AssetDescriptor<BitmapFont> PIXEL_FONT
 			= new AssetDescriptor<BitmapFont>(fontParameter.fontFileName, BitmapFont.class, fontParameter);
 
 
@@ -44,8 +44,8 @@ public class Assets {
 
 
 	//MUSIC
-	public static final AssetDescriptor<Music> EXTREMEACTION
-			= new AssetDescriptor<Music>("Music/bensound-happyrock.mp3", Music.class);
+	public static final AssetDescriptor<Music> TESTSOUND
+			= new AssetDescriptor<Music>("Music/startcar.mp3", Music.class);
 
 
 
@@ -76,9 +76,9 @@ public class Assets {
 
 		manager.load(EXPLOSION_TEXTUREATLAS);
 
-		manager.load(EXTREMEACTION);
+		manager.load(TESTSOUND);
 
-		manager.load(ACMEREGULAR_FONT);
+		manager.load(PIXEL_FONT);
 
 		manager.load(APPLESTORMITA_FONT);
 	}
