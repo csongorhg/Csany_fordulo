@@ -34,7 +34,7 @@ public class Assets {
 	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameter2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 	static {
 		fontParameter2.fontFileName = "Font/AppleStormXbdIta.otf";
-		fontParameter2.fontParameters.size = 100;
+		fontParameter2.fontParameters.size = 50;
 		fontParameter2.fontParameters.characters = CHARS;
 		fontParameter2.fontParameters.color = Color.WHITE;
 	}
@@ -58,6 +58,14 @@ public class Assets {
 	//TEXTURE
 	public static final AssetDescriptor<Texture> TEST_TEXTURE
 			= new AssetDescriptor<Texture>("TestImg/ratyitutu.png", Texture.class);
+	public static final AssetDescriptor<Texture> BACKGROUND
+			= new AssetDescriptor<Texture>("TestImg/background.png", Texture.class);
+	public static final AssetDescriptor<Texture> PLAY
+			= new AssetDescriptor<Texture>("Menu/play.png", Texture.class);
+	public static final AssetDescriptor<Texture> SETTINGS
+			= new AssetDescriptor<Texture>("Menu/cog.png", Texture.class);
+	public static final AssetDescriptor<Texture> EXIT
+			= new AssetDescriptor<Texture>("Menu/exit.png", Texture.class);
 
 
 
@@ -73,13 +81,16 @@ public class Assets {
 		manager.setLoader(BitmapFont.class, ".otf", new FreetypeFontLoader(resolver));
 
 		manager.load(TEST_TEXTURE);
+		manager.load(BACKGROUND);
+		manager.load(PLAY);
+		manager.load(SETTINGS);
+		manager.load(EXIT);
 
 		manager.load(EXPLOSION_TEXTUREATLAS);
 
 		manager.load(TESTSOUND);
 
 		manager.load(PIXEL_FONT);
-
 		manager.load(APPLESTORMITA_FONT);
 	}
 

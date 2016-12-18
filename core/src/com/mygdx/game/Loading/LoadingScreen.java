@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.Menu.MenuScreen;
 import com.mygdx.game.MyBaseClasses.MyScreen;
 import com.mygdx.game.GlobalClasses.*;
+import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteAnimatedActor;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;

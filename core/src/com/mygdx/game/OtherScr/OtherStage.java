@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
@@ -31,6 +32,8 @@ public class OtherStage extends MyStage {
                 game.setScreenBackByStackPop();
             }
         });
+        textButton.setPosition(((ExtendViewport)getViewport()).getMinWorldWidth()/2 - textButton.getWidth()/2,
+                ((ExtendViewport)getViewport()).getMinWorldHeight());
 
         addActor(textButton);
 

@@ -4,10 +4,12 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
+import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.OtherScr.OtherScreen;
 import com.mygdx.game.MyGdxGame;
 
@@ -20,6 +22,7 @@ public class MenuStage extends MyStage {
 
     private TextButton textButton, textButton2, textButton3, textButton4;
     private TextButton.TextButtonStyle textButtonStyle;
+    private OneSpriteStaticActor play, settings, exit;
     private GameMusic gameMusic;
 
     public MenuStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -34,17 +37,23 @@ public class MenuStage extends MyStage {
 
 
 
-        textButton = new MyButton("Play", game.getTextButtonStyle());
-        textButton.addListener(new ClickListener(){
+        play = new OneSpriteStaticActor(Assets.manager.get(Assets.PLAY));
+        play.setSize(300,300);
+        play.setPosition(((ExtendViewport)getViewport()).getMinWorldWidth()/2 - play.getWidth()/2,
+                ((ExtendViewport)getViewport()).getMinWorldHeight());
+        play.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new OtherScreen(game));
+                game.setScreen(new OtherScreen(game) );
             }
         });
+        addActor(play);
 
-        textButton.setPosition(0,0);
-        addActor(textButton);
+        resized();
+
+        System.out.println(play.getX()+" "+play.getY());
+
     }
 
 
@@ -56,5 +65,11 @@ public class MenuStage extends MyStage {
     @Override
     public void dispose() {
         super.dispose();
+    }
+
+    @Override
+    protected void resized() {
+        super.resized();
+        setCameraResetToLeftBottomOfScreen();
     }
 }

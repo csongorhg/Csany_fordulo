@@ -24,6 +24,6 @@ public class MyTextField extends TextField implements InitableInterface{
 
     @Override
     public void init() {
-
+        debug();
     }
 }

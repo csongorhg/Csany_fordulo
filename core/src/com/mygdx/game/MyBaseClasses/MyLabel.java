@@ -23,7 +23,7 @@ public class MyLabel extends Label implements InitableInterface{
 
     @Override
     public void init() {
-
+        debug();
     }
 
     protected float elapsedtime =0;
