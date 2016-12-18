@@ -32,9 +32,6 @@ public class MenuStage extends MyStage {
 
         addBackEventStackListener();
 
-        gameMusic = new GameMusic();
-        gameMusic.addMusic(Assets.manager.get(Assets.TESTSOUND));
-
 
 
         textButton = new MyButton("Play", game.getTextButtonStyle());
@@ -54,8 +51,6 @@ public class MenuStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        gameMusic.act();
-        //gameMusic.setMusicVolume(gameMusic.getMusicVolume()-0.01f); //hangerő állítás
     }
 
     @Override

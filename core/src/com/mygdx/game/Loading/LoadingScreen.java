@@ -12,6 +12,8 @@ import com.mygdx.game.MyBaseClasses.OneSpriteAnimatedActor;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 
+import Music.GameMusic;
+
 
 public class LoadingScreen extends MyScreen {
 
@@ -21,6 +23,7 @@ public class LoadingScreen extends MyScreen {
 	private float elapsedTime = 0;
 	private BitmapFont bitmapFont = new BitmapFont();
 	private OneSpriteAnimatedActor picture;
+	private GameMusic gameMusic;
 	GlyphLayout layout;
 
     public LoadingScreen(MyGdxGame game) {
@@ -81,11 +84,18 @@ public class LoadingScreen extends MyScreen {
 
 		if (elapsedTime > 4.0 && Assets.manager.update()) {
 			Assets.afterLoaded();
-			//game.setScreen(new MenuScreen(game));
+			music();
+			game.setScreen(new MenuScreen(game));
 		}
 
 		elapsedTime+=delta;
 
+	}
+
+	private void music() {
+		gameMusic = new GameMusic();
+		gameMusic.addMusic(Assets.manager.get(Assets.TESTSOUND));
+		gameMusic.act();
 	}
 
 	@Override

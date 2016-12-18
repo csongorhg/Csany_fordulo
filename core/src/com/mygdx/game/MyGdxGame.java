@@ -18,9 +18,12 @@ import com.mygdx.game.MyBaseClasses.MyScreen;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Stack;
 
+import Music.GameMusic;
+
 public class MyGdxGame extends Game {
 
 	public final Stack<Class> backButtonStack = new Stack();
+
 
 	public Label.LabelStyle getLabelStyle() {
 		Label.LabelStyle style;

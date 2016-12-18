@@ -9,7 +9,10 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyGdxGame;
+
+import Music.GameMusic;
 
 
 /**
@@ -23,6 +26,7 @@ abstract public class MyStage extends Stage implements InitableInterface {
         this.game = game;
         setCameraResetToCenterOfScreen();
         init();
+
     }
 
     public void addBackEventStackListener()    {
@@ -128,4 +132,5 @@ abstract public class MyStage extends Stage implements InitableInterface {
         }
 
     }
+
 }
