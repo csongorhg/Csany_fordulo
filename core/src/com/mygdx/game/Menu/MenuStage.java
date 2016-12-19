@@ -5,7 +5,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Game.GameScreen;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
@@ -45,7 +47,7 @@ public class MenuStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new DescriptionScreen(game) );
+                game.setScreen(new GameScreen(game) );
             }
         });
         addActor(play);
@@ -56,13 +58,13 @@ public class MenuStage extends MyStage {
         credits = new OneSpriteStaticActor(Assets.manager.get(Assets.SETTINGS));
         credits.setSize(200,200);
         credits.setPosition(width*(2/4f) - credits.getWidth()/2, height/2 - credits.getHeight()/2);
-        /*credits.addListener(new ClickListener(){
+        credits.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new SettingsScreen(game) );
+                game.setScreen(new DescriptionScreen(game));
             }
-        });*/
+        });
         addActor(credits);
 
 
