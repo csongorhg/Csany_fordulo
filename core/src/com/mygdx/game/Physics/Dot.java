@@ -9,10 +9,13 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
  */
 public class Dot extends Block {
 
+    public static float arany;
+
     public Dot(boolean green) {
         if(green)
             actor = new OneSpriteStaticActor(Assets.manager.get(Assets.GREENDOT));
         else
             actor = new OneSpriteStaticActor(Assets.manager.get(Assets.REDDOT));
+        actor.setSize(actor.getWidth()*arany,actor.getHeight()*arany);
     }
 }
