@@ -56,10 +56,8 @@ public class Assets {
 
 
 	//TEXTURE
-	public static final AssetDescriptor<Texture> TEST_TEXTURE
-			= new AssetDescriptor<Texture>("TestImg/ratyitutu.png", Texture.class);
 	public static final AssetDescriptor<Texture> BACKGROUND
-			= new AssetDescriptor<Texture>("TestImg/background.png", Texture.class);
+			= new AssetDescriptor<Texture>("Play/space.png", Texture.class);
 	public static final AssetDescriptor<Texture> PLAY
 			= new AssetDescriptor<Texture>("Menu/play.png", Texture.class);
 	public static final AssetDescriptor<Texture> SETTINGS
@@ -70,6 +68,12 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Play/myship.png", Texture.class);
 	public static final AssetDescriptor<Texture> ASTEROIDA
 			= new AssetDescriptor<Texture>("Play/asteroida.png", Texture.class);
+	public static final AssetDescriptor<Texture> BADSHIP
+			= new AssetDescriptor<Texture>("Play/badship.png", Texture.class);
+	public static final AssetDescriptor<Texture> REDDOT
+			= new AssetDescriptor<Texture>("Play/reddot.png", Texture.class);
+	public static final AssetDescriptor<Texture> GREENDOT
+			= new AssetDescriptor<Texture>("Play/greendot.png", Texture.class);
 	public static final AssetDescriptor<Texture> BACK
 			= new AssetDescriptor<Texture>("Menu/back.png", Texture.class);
 	public static final AssetDescriptor<Texture> SOUND
@@ -90,13 +94,15 @@ public class Assets {
 		manager.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(resolver));
 		manager.setLoader(BitmapFont.class, ".otf", new FreetypeFontLoader(resolver));
 
-		manager.load(TEST_TEXTURE);
 		manager.load(BACKGROUND);
 		manager.load(PLAY);
 		manager.load(SETTINGS);
 		manager.load(EXIT);
 		manager.load(MYSHIP);
 		manager.load(ASTEROIDA);
+		manager.load(BADSHIP);
+		manager.load(GREENDOT);
+		manager.load(REDDOT);
 		manager.load(BACK);
 		manager.load(SOUND);
 		manager.load(NOSOUND);

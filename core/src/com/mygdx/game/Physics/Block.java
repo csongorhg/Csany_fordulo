@@ -10,24 +10,6 @@ public class Block {
 
     Texture t;
     public OneSpriteStaticActor actor;
-    float weight = 0;
-    int id;
-
-    Block(Block b){
-        this.id = b.id;
-        this.weight = b.weight;
-        this.actor = new OneSpriteStaticActor(b.t);
-    }
-
-    Block(int id, float weight, Texture t){
-        this.id = id;
-        this.weight = weight;
-        this.t = t;
-    }
-
-    public void setWeight(float weight) {
-        this.weight = weight;
-    }
 
     public void setPoz(float f1,float f2) {
         actor.setPosition(f1,f2);
@@ -43,11 +25,6 @@ public class Block {
         actor.setSize(f1,f2);
     }
 
-    public float getWeight() {
-        return weight;
-    }
-    public int getId(){return id;}
-
     public float getWidth() {
         return actor.getWidth();
     }
@@ -55,7 +32,4 @@ public class Block {
         return actor.getHeight();
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 }
