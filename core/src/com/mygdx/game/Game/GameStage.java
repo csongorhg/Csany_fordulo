@@ -174,8 +174,7 @@ public class GameStage extends MyStage {
     }
 
     private void enemyPhysics() {
-        try {
-            if (badships.get(0).actor.getY() < 0 || badships.size() <= 0) {
+            if (badships.size() <= 0 || badships.get(0).actor.getY() < 0) {
                 if (badships.size() != 0) hp--;
                 for (int i = 0; i < badships.size(); i++) {
                     badships.get(i).actor.remove();
@@ -183,10 +182,6 @@ public class GameStage extends MyStage {
                 badships = new Vector<BadShip>();
                 generateBadShips();
             }
-        }catch(Exception e){
-            badships = new Vector<BadShip>();
-            generateBadShips();
-        }
         for (int i = 0; i < badships.size() ; i++){
             badships.get(i).actor.setY(badships.get(i).actor.getY()-speed);
             for(int j = 0; j < greendot.size(); j++){
