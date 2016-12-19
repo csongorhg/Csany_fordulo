@@ -40,12 +40,14 @@ public class DescriptionStage extends MyStage {
     public void init() {
         addBackEventStackListener(); //Az eszköz jobbra-balra döntésével lehet az űrhajót irányítani. Az ellenfeleket lőni a képernyőre kattintással lehet(az űhajó csak előre tud lőni).
 
-        s = "Game management:\n\r-----------------\n\rThe device left and right by moving\n\rcan be control the spaceship.\n\rYou can shoot the enemies by clicking on the screen()";
+        s = "Game management:\n\r-----------------\n\rYou can control the spaceship\n\rby turning the device left or right.\n\rYou can shoot the enemies by clicking on the screen(the spaceship can only shoot forward).";
+
         resized();
         soundgenerate();
 
         myLabel = new MyLabel(s, game.getLabelStyle());
         addActor(myLabel);
+        myLabel.setPosition(width/2-myLabel.getWidth()/2, height-myLabel.getHeight()-10f);
 
         textButton = new MyButton("Back", game.getTextButtonStyle());
         textButton.addListener(new ClickListener(){
