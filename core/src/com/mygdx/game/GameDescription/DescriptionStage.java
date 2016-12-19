@@ -10,9 +10,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.Menu.MenuScreen;
+import com.mygdx.game.Menu.MenuStage;
 import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.MyStage;
+import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 
 /**
@@ -23,6 +26,8 @@ public class DescriptionStage extends MyStage {
     private TextButton textButton;
     private MyLabel myLabel;
     private String s;
+    private float width, height;
+    private OneSpriteStaticActor sound;
 
 
 
@@ -36,6 +41,8 @@ public class DescriptionStage extends MyStage {
         addBackEventStackListener(); //Az eszköz jobbra-balra döntésével lehet az űrhajót irányítani. Az ellenfeleket lőni a képernyőre kattintással lehet(az űhajó csak előre tud lőni).
 
         s = "Game management:\n\r-----------------\n\rThe device left and right by moving\n\rcan be control the spaceship.\n\rYou can shoot the enemies by clicking on the screen()";
+        resized();
+        soundgenerate();
 
         myLabel = new MyLabel(s, game.getLabelStyle());
         addActor(myLabel);
@@ -49,9 +56,8 @@ public class DescriptionStage extends MyStage {
             }
         });
         addActor(textButton);
-
-
-        resized();
+        textButton.setPosition(width/2 - textButton.getWidth()/2, 0);
+        myLabel.setPosition(width/2-myLabel.getWidth()/2, height-myLabel.getHeight()-10f);
     }
 
     @Override
@@ -59,13 +65,31 @@ public class DescriptionStage extends MyStage {
         super.dispose();
     }
 
+
+    void soundgenerate(){
+        //SOUND
+        sound = new OneSpriteStaticActor(MenuStage.musicPlay?Assets.manager.get(Assets.SOUND):Assets.manager.get(Assets.NOSOUND));
+        if(MenuStage.musicPlay) MenuScreen.gMusic.setVolume(1f);
+        else MenuScreen.gMusic.setVolume(0f);
+        sound.setSize(100f,100f);
+        sound.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                MenuStage.musicPlay=!MenuStage.musicPlay;
+                soundgenerate();
+            }
+        });
+        sound.setPosition(width-sound.getWidth(),height-sound.getHeight());
+        addActor(sound);
+    }
+
     @Override
     protected void resized() {
         super.resized();
         setCameraResetToLeftBottomOfScreen();
-
-        textButton.setPosition(((ExtendViewport)getViewport()).getMinWorldWidth()/2 - textButton.getWidth()/2, 0);
-        myLabel.setPosition(((ExtendViewport) getViewport()).getMinWorldWidth()/2-myLabel.getWidth()/2, ((ExtendViewport) getViewport()).getMinWorldHeight()-myLabel.getHeight()-10f);
+        width = ((getViewport()).getWorldWidth());
+        height = ((getViewport()).getWorldHeight());
     }
 
     @Override

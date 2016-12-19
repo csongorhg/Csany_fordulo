@@ -4,11 +4,13 @@ package com.mygdx.game.MyBaseClasses;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ObjectSet;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyGdxGame;
 
 /**
@@ -90,6 +92,7 @@ abstract public class MyScreen implements Screen, InitableInterface {
 
     @Override
     public void init() {
+
         //camera.setToOrtho(false);
         /*
         camera.translate(WORLD_WIDTH/2, WORLD_HEIGHT/2);*/

@@ -41,13 +41,15 @@ public class Assets {
 	public static final AssetDescriptor<BitmapFont> APPLESTORMITA_FONT
 			= new AssetDescriptor<BitmapFont>(fontParameter2.fontFileName, BitmapFont.class, fontParameter2);
 
+
+
 	//MUSIC
 	public static final AssetDescriptor<Music> GAMEMUSIC
 			= new AssetDescriptor<Music>("Music/bensound-epic.mp3", Music.class);
 
 
 
-	//ATLAS.
+	//ATLAS
 	public static final AssetDescriptor<TextureAtlas> EXPLOSION_TEXTUREATLAS
 			= new AssetDescriptor<TextureAtlas>("Explosion/explosion.atlas", TextureAtlas.class);
 
@@ -68,6 +70,12 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Play/myship.png", Texture.class);
 	public static final AssetDescriptor<Texture> ASTEROIDA
 			= new AssetDescriptor<Texture>("Play/asteroida.png", Texture.class);
+	public static final AssetDescriptor<Texture> BACK
+			= new AssetDescriptor<Texture>("Menu/back.png", Texture.class);
+	public static final AssetDescriptor<Texture> SOUND
+			= new AssetDescriptor<Texture>("Menu/sound.png", Texture.class);
+	public static final AssetDescriptor<Texture> NOSOUND
+			= new AssetDescriptor<Texture>("Menu/nosound.png", Texture.class);
 
 
 
@@ -89,6 +97,10 @@ public class Assets {
 		manager.load(EXIT);
 		manager.load(MYSHIP);
 		manager.load(ASTEROIDA);
+		manager.load(BACK);
+		manager.load(SOUND);
+		manager.load(NOSOUND);
+
 
 		manager.load(EXPLOSION_TEXTUREATLAS);
 
