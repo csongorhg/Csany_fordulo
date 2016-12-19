@@ -10,6 +10,7 @@ import com.mygdx.game.Menu.StarStream;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Physics.Asteroid;
 import com.mygdx.game.Physics.BadShip;
 import com.mygdx.game.Physics.Dot;
 import com.mygdx.game.Physics.SpaceShip;
@@ -24,6 +25,7 @@ public class GameStage extends MyStage {
     public static final String PREF_COUNT = "PREF_COUNT";
     public static SpaceShip ship;
     public static Vector<BadShip> badships;
+    public static Vector<Asteroid> asteroids;
     public static Vector<Dot> reddot;
     public static Vector<Dot> greendot;
     private StarRotate starRotate;
@@ -45,6 +47,8 @@ public class GameStage extends MyStage {
         resized();
 
         addActor(starRotate= new StarRotate());
+
+        addActor(starRotate= new StarRotate());
         starRotate.setSize(width,height);
 
         starRotate.setZIndex(0);
@@ -55,11 +59,37 @@ public class GameStage extends MyStage {
 
         ship = new SpaceShip();
         addActor(ship.actor);
-        ship.actor.setPosition(width/2-ship.actor.getWidth()/2,height/10*9);
+        float arany = (width/5.0f)/ship.actor.getHeight()/4;
+        Dot.arany = arany/2;
+        BadShip.arany = arany/2;
+
+        ship.actor.setSize(ship.getWidth()*arany,ship.getHeight()*arany);
+        ship.actor.setPosition(width/2-(ship.actor.getWidth()*arany)/2,(height/5));
 
         badships = new Vector<BadShip>();
         greendot = new Vector<Dot>();
         reddot = new Vector<Dot>();
+        asteroids = new Vector<Asteroid>();
+
+        generateBadShips();
+        generateAsteroids();
+    }
+
+    private void generateBadShips() {
+        BadShip b = new BadShip();
+        float x = b.getWidth()/4;
+        for (int i = 0; i < width/b.getWidth()-1; i++){
+            System.out.println(i);
+            b = new BadShip();
+            addActor(b.actor);
+            badships.add(b);
+            b.actor.setSize(b.getWidth(),b.getHeight());
+            b.actor.setPosition(x,height-b.getHeight());
+            x += b.getWidth();
+        }
+    }
+
+    private void generateAsteroids() {
 
     }
 

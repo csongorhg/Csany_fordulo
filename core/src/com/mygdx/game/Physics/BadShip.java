@@ -10,7 +10,20 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
  */
 public class BadShip extends Block {
 
+    public static float arany;
+
     public BadShip() {
         actor = new OneSpriteStaticActor(Assets.manager.get(Assets.BADSHIP));
+        actor.setSize(actor.getWidth()*arany,actor.getHeight()*arany);
+    }
+
+    @Override
+    public float getHeight() {
+        return actor.getHeight()*arany;
+    }
+
+    @Override
+    public float getWidth() {
+        return actor.getWidth()*arany;
     }
 }
