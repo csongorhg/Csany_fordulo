@@ -3,9 +3,12 @@ package com.mygdx.game.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.Menu.MenuStage;
 import com.mygdx.game.MyBaseClasses.MyScreen;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
@@ -43,6 +46,13 @@ public class GameScreen extends MyScreen {
                 resized();
                 addActor(backGroudActor = new OneSpriteStaticActor(Assets.manager.get(Assets.STAR)));
                 backGroudActor.setSize(width,height);
+                gameStage.addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        GameStage.shoot = true;
+                    }
+                });
             }
 
             @Override
@@ -50,6 +60,10 @@ public class GameScreen extends MyScreen {
                 width = ((getViewport()).getWorldWidth());
                 height = ((getViewport()).getWorldHeight());
             }
+
+
+
+
         };
         //háttér vége
     }

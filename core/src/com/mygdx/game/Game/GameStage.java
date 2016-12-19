@@ -38,14 +38,19 @@ public class GameStage extends MyStage {
     private float speed = 0.5f;
     private float timer;
     public static int time[], score;
+    public static boolean shoot;
 
 
     public GameStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
+
     }
 
     @Override
     public void init() {
+
+        shoot = false;
+
         time = new int[2];
         timer=0;
         score = 0;
@@ -116,6 +121,7 @@ public class GameStage extends MyStage {
         backgroundPhysics();
         sound.setZIndex(Integer.MAX_VALUE);
         back.setZIndex(Integer.MAX_VALUE);
+
     }
 
     private void shipPhysics() {
@@ -132,6 +138,17 @@ public class GameStage extends MyStage {
     }
 
     private void greenPhysics() {
+        if (shoot) {
+            shoot = false;
+            Dot dot = new Dot(true);
+            dot.actor.setPosition(ship.actor.getX()+ship.actor.getWidth()/2-dot.actor.getWidth()/2, ship.actor.getY() + ship.actor.getHeight());
+            addActor(dot.actor);
+            greendot.add(dot);
+        }
+        for (int i = 0; i < greendot.size(); i++) {
+            greendot.get(i).actor.setZIndex(0);
+            greendot.get(i).actor.setY(greendot.get(i).actor.getY()+1);
+        }
     }
 
     private void redPhysics() {
