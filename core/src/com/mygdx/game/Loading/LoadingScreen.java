@@ -81,9 +81,7 @@ public class LoadingScreen extends MyScreen {
 		spriteBatch.begin();
 		bitmapFont.draw(spriteBatch,"Betöltés: "+ ((int)(Assets.manager.getProgress()*100f))+" %", Gdx.graphics.getWidth()/2-width/2,text.getY()+80);
 		spriteBatch.end();
-
-
-		if (elapsedTime > 4.0 && Assets.manager.update()) {
+		if (elapsedTime > 2.0 && Assets.manager.update() ) {
 			Assets.afterLoaded();
 			music();
 			game.setScreen(new MenuScreen(game));

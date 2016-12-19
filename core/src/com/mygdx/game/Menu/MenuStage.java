@@ -39,8 +39,9 @@ public class MenuStage extends MyStage {
 
         play = new OneSpriteStaticActor(Assets.manager.get(Assets.PLAY));
         play.setSize(300,300);
-        play.setPosition(((ExtendViewport)getViewport()).getMinWorldWidth()/2 - play.getWidth()/2,
-                ((ExtendViewport)getViewport()).getMinWorldHeight());
+        /*play.setPosition(((ExtendViewport)getViewport()).getMinWorldWidth()/2 - play.getWidth()/2,
+                ((ExtendViewport)getViewport()).getMinWorldHeight()/2 + play.getHeight()/2);*/
+
         play.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -71,5 +72,9 @@ public class MenuStage extends MyStage {
     protected void resized() {
         super.resized();
         setCameraResetToLeftBottomOfScreen();
+
+        play.setPosition(getViewport().getWorldWidth()/2 - play.getWidth()/2,
+                getViewport().getWorldHeight()/2-play.getHeight()/2);
+
     }
 }
