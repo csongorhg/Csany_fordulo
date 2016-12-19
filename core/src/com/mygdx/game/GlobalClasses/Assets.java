@@ -41,8 +41,6 @@ public class Assets {
 	public static final AssetDescriptor<BitmapFont> APPLESTORMITA_FONT
 			= new AssetDescriptor<BitmapFont>(fontParameter2.fontFileName, BitmapFont.class, fontParameter2);
 
-
-
 	//MUSIC
 	public static final AssetDescriptor<Music> GAMEMUSIC
 			= new AssetDescriptor<Music>("Music/bensound-epic.mp3", Music.class);
