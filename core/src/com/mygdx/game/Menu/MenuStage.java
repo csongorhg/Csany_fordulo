@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
-import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.OtherScr.OtherScreen;
@@ -23,7 +22,7 @@ public class MenuStage extends MyStage {
 
     private TextButton textButton, textButton2, textButton3, textButton4;
     private TextButton.TextButtonStyle textButtonStyle;
-    private OneSpriteStaticActor play, settings, exit;
+    private OneSpriteStaticActor play, credits, exit;
     private GameMusic gameMusic;
     private float width, height;
 
@@ -55,17 +54,17 @@ public class MenuStage extends MyStage {
 
 
         //SETTINGS
-        settings = new OneSpriteStaticActor(Assets.manager.get(Assets.SETTINGS));
-        settings.setSize(200,200);
-        settings.setPosition(width*(2/4f) - settings.getWidth()/2, height/2 - settings.getHeight()/2);
-        /*settings.addListener(new ClickListener(){
+        credits = new OneSpriteStaticActor(Assets.manager.get(Assets.SETTINGS));
+        credits.setSize(200,200);
+        credits.setPosition(width*(2/4f) - credits.getWidth()/2, height/2 - credits.getHeight()/2);
+        /*credits.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.setScreen(new SettingsScreen(game) );
             }
         });*/
-        addActor(settings);
+        addActor(credits);
 
 
 
