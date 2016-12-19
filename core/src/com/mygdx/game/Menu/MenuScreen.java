@@ -68,8 +68,5 @@ public class MenuScreen extends MyScreen {
             }
         };
         //háttér vége
-
-        menuStage  = new MenuStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
-        Gdx.input.setInputProcessor(menuStage);
     }
 }
