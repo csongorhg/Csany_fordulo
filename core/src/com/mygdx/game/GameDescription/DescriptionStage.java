@@ -41,7 +41,6 @@ public class DescriptionStage extends MyStage {
         addBackEventStackListener(); //Az eszköz jobbra-balra döntésével lehet az űrhajót irányítani. Az ellenfeleket lőni a képernyőre kattintással lehet(az űhajó csak előre tud lőni).
 
         s = "Game instruction:\n\r-----------------\n\rYou can control the spaceship\n\rby turning the device left or right.\n\rYou can shoot the enemies\n\rby clicking on the screen\n\r(the spaceship can only shoot forward).";
-
         resized();
         soundgenerate();
 
