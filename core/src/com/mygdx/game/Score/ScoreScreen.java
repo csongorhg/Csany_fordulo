@@ -1,4 +1,4 @@
-package com.mygdx.game.GameDescription;
+package com.mygdx.game.Score;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -11,15 +11,15 @@ import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 
 /**
- * Created by tuskeb on 2016. 09. 30...
+ * Created by Kicsi on 2016. 12. 19..
  */
-public class DescriptionScreen extends MyScreen {
 
-    protected DescriptionStage descriptionStage;
+public class ScoreScreen extends MyScreen{
+    protected ScoreStage scoreStage;
     protected MyStage bgStage;
 
 
-    public DescriptionScreen(MyGdxGame game) {
+    public ScoreScreen(MyGdxGame game) {
         super(game);
     }
 
@@ -28,8 +28,8 @@ public class DescriptionScreen extends MyScreen {
         super.render(delta);
         bgStage.act(delta);
         bgStage.draw();
-        descriptionStage.act(delta);
-        descriptionStage.draw();
+        scoreStage.act(delta);
+        scoreStage.draw();
 
     }
 
@@ -41,15 +41,15 @@ public class DescriptionScreen extends MyScreen {
 
     @Override
     public void dispose() {
-        descriptionStage.dispose();
+        scoreStage.dispose();
         super.dispose();
     }
 
     @Override
     public void init() {
 
-        descriptionStage  = new DescriptionStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
-        Gdx.input.setInputProcessor(descriptionStage);
+        scoreStage  = new ScoreStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
+        Gdx.input.setInputProcessor(scoreStage);
 
 
         //háttér
@@ -68,7 +68,7 @@ public class DescriptionScreen extends MyScreen {
         };
         //háttér vége
 
-        descriptionStage  = new DescriptionStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
-        Gdx.input.setInputProcessor(descriptionStage);
+        scoreStage  = new ScoreStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
+        Gdx.input.setInputProcessor(scoreStage);
     }
 }
