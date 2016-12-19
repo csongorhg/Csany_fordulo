@@ -33,11 +33,11 @@ public class DescriptionStage extends MyStage {
 
 
     public void init() {
-        addBackEventStackListener();
+        addBackEventStackListener(); //Az eszköz jobbra-balra döntésével lehet az űrhajót irányítani. Az ellenfeleket lőni a képernyőre kattintással lehet(az űhajó csak előre tud lőni).
 
-        s = "asd";
+        s = "Game management:\n\r-----------------\n\rThe device left and right by moving\n\rcan be control the spaceship.\n\rYou can shoot the enemies by clicking on the screen()";
 
-        myLabel = new MyLabel(s, OtherStageLabelStyle());
+        myLabel = new MyLabel(s, game.getLabelStyle());
         addActor(myLabel);
 
         textButton = new MyButton("Back", game.getTextButtonStyle());
@@ -52,17 +52,6 @@ public class DescriptionStage extends MyStage {
 
 
         resized();
-    }
-
-    private Label.LabelStyle OtherStageLabelStyle(){
-            Label.LabelStyle style;
-            style = new com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle();
-            style.font = Assets.manager.get(Assets.APPLESTORMITA_FONT);
-            style.fontColor = Color.YELLOW;
-            Pixmap p = new Pixmap(1,1, Pixmap.Format.RGB888);
-            p.setColor(0.4f,0.2f,0.8f, 0.5f);
-            p.fill();
-            return style;
     }
 
     @Override

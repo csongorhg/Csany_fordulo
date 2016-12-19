@@ -23,7 +23,7 @@ public class Assets {
 	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameter = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 	static {
 		fontParameter.fontFileName = "Font/Pixelfont.ttf";
-		fontParameter.fontParameters.size = 100;
+		fontParameter.fontParameters.size = 50;
 		fontParameter.fontParameters.characters = CHARS;
 		fontParameter.fontParameters.color = Color.WHITE;
 	}
