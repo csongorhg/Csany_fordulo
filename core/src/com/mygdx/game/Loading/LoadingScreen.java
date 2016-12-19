@@ -93,7 +93,7 @@ public class LoadingScreen extends MyScreen {
 
 	private void music() {
 		gameMusic = new GameMusic();
-		gameMusic.addMusic(Assets.manager.get(Assets.TESTSOUND));
+		gameMusic.addMusic(Assets.manager.get(Assets.GAMEMUSIC));
 		gameMusic.act();
 	}
 
@@ -106,4 +106,6 @@ public class LoadingScreen extends MyScreen {
 	public void init() {
 		setBackGroundColor(0f, 0f, 0f);
 	}
+
+
 }

@@ -1,16 +1,17 @@
 package com.mygdx.game.Menu;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Game.GameScreen;
 import com.mygdx.game.GlobalClasses.Assets;
-import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
-import com.mygdx.game.OtherScr.OtherScreen;
+import com.mygdx.game.GameDescription.DescriptionScreen;
 import com.mygdx.game.MyGdxGame;
 
 import Music.GameMusic;
@@ -22,8 +23,9 @@ public class MenuStage extends MyStage {
 
     private TextButton textButton, textButton2, textButton3, textButton4;
     private TextButton.TextButtonStyle textButtonStyle;
-    private OneSpriteStaticActor play, settings, exit;
+    private OneSpriteStaticActor play, credits, exit;
     private GameMusic gameMusic;
+    private float width, height;
 
     public MenuStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -35,25 +37,52 @@ public class MenuStage extends MyStage {
 
         addBackEventStackListener();
 
+        resized();
 
-
+        //PLAY
         play = new OneSpriteStaticActor(Assets.manager.get(Assets.PLAY));
-        play.setSize(300,300);
-        /*play.setPosition(((ExtendViewport)getViewport()).getMinWorldWidth()/2 - play.getWidth()/2,
-                ((ExtendViewport)getViewport()).getMinWorldHeight()/2 + play.getHeight()/2);*/
-
+        play.setSize(200,200);
+        play.setPosition(width*(1/4f) - play.getWidth()/2, height/2 - play.getHeight()/2);
         play.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new OtherScreen(game) );
+                game.setScreen(new GameScreen(game) );
             }
         });
         addActor(play);
 
-        resized();
 
-        System.out.println(play.getX()+" "+play.getY());
+
+        //SETTINGS
+        credits = new OneSpriteStaticActor(Assets.manager.get(Assets.SETTINGS));
+        credits.setSize(200,200);
+        credits.setPosition(width*(2/4f) - credits.getWidth()/2, height/2 - credits.getHeight()/2);
+        credits.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                game.setScreen(new DescriptionScreen(game));
+            }
+        });
+        addActor(credits);
+
+
+
+        //EXIT
+        exit = new OneSpriteStaticActor(Assets.manager.get(Assets.EXIT));
+        exit.setSize(200,200);
+        exit.setPosition(width*(3/4f) - exit.getWidth()/2, height/2 - exit.getHeight()/2);
+        exit.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                Gdx.app.exit();
+                }
+        });
+        addActor(exit);
+
+
 
     }
 
@@ -72,9 +101,7 @@ public class MenuStage extends MyStage {
     protected void resized() {
         super.resized();
         setCameraResetToLeftBottomOfScreen();
-
-        play.setPosition(getViewport().getWorldWidth()/2 - play.getWidth()/2,
-                getViewport().getWorldHeight()/2-play.getHeight()/2);
-
+        width = (((ExtendViewport)getViewport()).getWorldWidth());
+        height = ((getViewport()).getWorldHeight());
     }
 }
