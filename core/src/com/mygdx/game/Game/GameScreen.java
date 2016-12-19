@@ -32,6 +32,7 @@ public class GameScreen extends MyScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
+
         gameStage.act(delta);
         gameStage.draw();
     }

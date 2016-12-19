@@ -82,6 +82,8 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Menu/sound.png", Texture.class);
 	public static final AssetDescriptor<Texture> NOSOUND
 			= new AssetDescriptor<Texture>("Menu/nosound.png", Texture.class);
+	public static final AssetDescriptor<Texture> STAR
+			= new AssetDescriptor<Texture>("Play/space.png", Texture.class);
 
 
 
@@ -103,6 +105,7 @@ public class Assets {
 		manager.load(EXIT);
 		manager.load(MYSHIP);
 		manager.load(ASTEROIDA);
+		manager.load(STAR);
 		manager.load(BADSHIP);
 		manager.load(GREENDOT);
 		manager.load(REDDOT);
