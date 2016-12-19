@@ -47,7 +47,7 @@ public class Assets {
 
 
 
-	//ATLAS
+	//ATLAS.
 	public static final AssetDescriptor<TextureAtlas> EXPLOSION_TEXTUREATLAS
 			= new AssetDescriptor<TextureAtlas>("Explosion/explosion.atlas", TextureAtlas.class);
 

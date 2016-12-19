@@ -7,7 +7,7 @@ import com.mygdx.game.MyBaseClasses.MyScreen;
 import com.mygdx.game.MyGdxGame;
 
 /**
- * Created by tuskeb on 2016. 09. 30..
+ * Created by tuskeb on 2016. 09. 30...
  */
 public class DescriptionScreen extends MyScreen {
     protected DescriptionStage descriptionStage;

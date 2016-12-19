@@ -16,7 +16,7 @@ import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyGdxGame;
 
 /**
- * Created by tuskeb on 2016. 09. 30..
+ * Created by tuskeb on 2016. 09. 30...
  */
 public class DescriptionStage extends MyStage {
 
