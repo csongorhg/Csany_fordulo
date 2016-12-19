@@ -1,6 +1,7 @@
 package com.mygdx.game.Physics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 
