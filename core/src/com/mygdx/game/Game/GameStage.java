@@ -31,7 +31,6 @@ public class GameStage extends MyStage {
     public static Vector<Asteroid> asteroids;
     public static Vector<Dot> reddot;
     public static Vector<Dot> greendot;
-    private StarRotate starRotate;
     private float width, height;
     private float speed = 0.5f;
     private float timer;
@@ -51,16 +50,6 @@ public class GameStage extends MyStage {
 
         resized();
 
-        addActor(starRotate= new StarRotate());
-
-        addActor(starRotate= new StarRotate());
-        starRotate.setSize(width,height);
-
-        starRotate.setZIndex(0);
-
-        StarStream.size[0] = width;
-        StarStream.size[1] = height;
-        addActor(starRotate = new StarRotate());
         //teszt
 
         ship = new SpaceShip();
