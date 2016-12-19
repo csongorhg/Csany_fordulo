@@ -16,6 +16,7 @@ import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.GameDescription.DescriptionScreen;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.Score.ScoreScreen;
 
 import Music.GameMusic;
 
