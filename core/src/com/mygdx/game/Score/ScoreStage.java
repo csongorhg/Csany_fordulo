@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Game.GameStage;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.Menu.MenuScreen;
 import com.mygdx.game.Menu.MenuStage;
@@ -45,15 +46,15 @@ public class ScoreStage extends MyStage{
 
         soundgenerate();
 
-        myLabel = new MyLabel("Score: 0\n\rTime: 0:00", game.getLabelStyle());
+        myLabel = new MyLabel("Score: "+ GameStage.score+"\n\rTime: "+GameStage.time[0]+":"+GameStage.time[1], game.getLabelStyle());
         addActor(myLabel);
         myLabel.setZIndex(1);
         myLabel.setPosition(width/2-myLabel.getWidth()/2, height-sound.getHeight()-10f);
 
-        myLabel2 = new MyLabel("NEW BEST SCORE", game.getLabelStyle());
+        /*myLabel2 = new MyLabel("NEW BEST SCORE", game.getLabelStyle());
         addActor(myLabel2);
         myLabel2.setZIndex(1);
-        myLabel2.setPosition(width/2-myLabel2.getWidth()/2, myLabel.getY()-myLabel2.getHeight()-10f);
+        myLabel2.setPosition(width/2-myLabel2.getWidth()/2, myLabel.getY()-myLabel2.getHeight()-10f);*/
 
         back = new OneSpriteStaticActor(Assets.manager.get(Assets.BACK));
         addActor(back);
@@ -65,7 +66,7 @@ public class ScoreStage extends MyStage{
             }
         });
         back.setZIndex(1);
-        back.setPosition(width/2-back.getWidth()/2, myLabel2.getY()-back.getHeight()-10f);
+        back.setPosition(width/2-back.getWidth()/2, myLabel.getY()-back.getHeight()-10f);
     }
 
     void soundgenerate(){

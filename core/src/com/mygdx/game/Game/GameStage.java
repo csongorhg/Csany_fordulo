@@ -28,6 +28,8 @@ public class GameStage extends MyStage {
     public static Vector<Dot> greendot;
     private StarRotate starRotate;
     private float width, height;
+    private float timer;
+    public static int time[], score;
 
 
     public GameStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -36,6 +38,9 @@ public class GameStage extends MyStage {
 
     @Override
     public void init() {
+        time = new int[2];
+        timer=0;
+        score = 0;
 
         resized();
 
@@ -61,6 +66,10 @@ public class GameStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+        timer+=delta;
+        int t = (int)(timer/60*100);
+        time[0] = t/60;
+        time[1] = t%60;
         shipPhysics();
         enemyPhysics();
         greenPhysics();
