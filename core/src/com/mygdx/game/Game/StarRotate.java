@@ -1,5 +1,6 @@
 package com.mygdx.game.Game;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
@@ -22,15 +23,15 @@ public class StarRotate extends OneSpriteStaticActor {
         //setScale(3);
         setSize(size[0],size[1]);
         setZIndex(0);
-        setPosition(size[0]/2,0);
+        setX(-getWidth());
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        /*setX(getX()+120*delta);
+        setX(-GameStage.ship.actor.getX());
         setZIndex(0);
-        if (getX()>getStage().getViewport().getWorldWidth()){
+        /*if (getX()>getStage().getViewport().getWorldWidth()){
             getStage().getActors().removeValue(this,true);
         }
         if (getX()>=0 && !createNew){

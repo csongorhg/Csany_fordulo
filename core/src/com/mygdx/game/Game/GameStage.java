@@ -26,7 +26,7 @@ public class GameStage extends MyStage {
     public static Vector<BadShip> badships;
     public static Vector<Dot> reddot;
     public static Vector<Dot> greendot;
-    private OneSpriteStaticActor starRotate;
+    private StarRotate starRotate;
     private float width, height;
 
 
@@ -36,15 +36,17 @@ public class GameStage extends MyStage {
 
     @Override
     public void init() {
-        /*addActor(starRotate= new StarRotate());
+
+        resized();
+
+        addActor(starRotate= new StarRotate());
         starRotate.setSize(width,height);
-        starRotate.setX(getViewport().getWorldWidth()/2);
 
         starRotate.setZIndex(0);
 
         StarStream.size[0] = width;
-        StarStream.size[1] = height;*/
-        addActor(starRotate = new OneSpriteStaticActor(Assets.manager.get(Assets.STAR)));
+        StarStream.size[1] = height;
+        addActor(starRotate = new StarRotate());
 
         ship = new SpaceShip();
         addActor(ship.actor);
@@ -67,7 +69,9 @@ public class GameStage extends MyStage {
     }
 
     private void shipPhysics() {
-        ship.actor.setX(ship.actor.getX() + Gdx.input.getAccelerometerX());
+        if (ship.actor.getX() <= width && ship.actor.getX() >= -1) {
+            ship.actor.setX(ship.actor.getX() + Gdx.input.getAccelerometerY());
+        }
     }
 
     private void enemyPhysics() {
