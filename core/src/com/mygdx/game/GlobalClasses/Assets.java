@@ -68,6 +68,8 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Play/myship.png", Texture.class);
 	public static final AssetDescriptor<Texture> ASTEROIDA
 			= new AssetDescriptor<Texture>("Play/asteroida.png", Texture.class);
+	public static final AssetDescriptor<Texture> STAR
+			= new AssetDescriptor<Texture>("Play/space.png", Texture.class);
 
 
 
@@ -89,6 +91,7 @@ public class Assets {
 		manager.load(EXIT);
 		manager.load(MYSHIP);
 		manager.load(ASTEROIDA);
+		manager.load(STAR);
 
 		manager.load(EXPLOSION_TEXTUREATLAS);
 
