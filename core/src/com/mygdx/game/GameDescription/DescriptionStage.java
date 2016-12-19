@@ -39,14 +39,6 @@ public class DescriptionStage extends MyStage {
         super(viewport, batch, game);
     }
 
-    @Override
-    public boolean keyDown(int keyCode) {
-        if (keyCode == Input.Keys.BACK)
-        {
-            game.setScreen(new MenuScreen(game));
-        }
-        return false;
-    }
 
 
     public void init() {

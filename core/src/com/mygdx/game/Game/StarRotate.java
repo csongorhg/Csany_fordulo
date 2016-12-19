@@ -31,14 +31,6 @@ public class StarRotate extends OneSpriteStaticActor {
         super.act(delta);
         setX(-GameStage.ship.actor.getX());
         setZIndex(0);
-        /*if (getX()>getStage().getViewport().getWorldWidth()){
-            getStage().getActors().removeValue(this,true);
-        }
-        if (getX()>=0 && !createNew){
-            createNew = true;
-            getStage().addActor(new StarRotate());
-            Actor a = getStage().getActors().get(getStage().getActors().size-1);
-            a.setPosition(getX()-a.getWidth(),0);
-        }*/
+
     }
 }

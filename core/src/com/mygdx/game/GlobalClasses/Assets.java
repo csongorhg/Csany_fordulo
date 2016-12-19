@@ -112,6 +112,7 @@ public class Assets {
 		manager.load(BACK);
 		manager.load(SOUND);
 		manager.load(NOSOUND);
+		manager.load(STAR);
 
 
 		manager.load(EXPLOSION_TEXTUREATLAS);

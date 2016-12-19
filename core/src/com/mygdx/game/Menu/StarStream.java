@@ -39,5 +39,6 @@ public class StarStream extends OneSpriteStaticActor {
             Actor a = getStage().getActors().get(getStage().getActors().size-1);
             a.setPosition(getX()-a.getWidth(),0);
         }
+
     }
 }

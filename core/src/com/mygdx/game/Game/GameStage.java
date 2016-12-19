@@ -8,6 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.Menu.MenuScreen;
+import com.mygdx.game.Menu.MenuStage;
 import com.mygdx.game.Menu.StarStream;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
@@ -31,12 +33,11 @@ public class GameStage extends MyStage {
     public static Vector<Asteroid> asteroids;
     public static Vector<Dot> reddot;
     public static Vector<Dot> greendot;
-    private StarRotate starRotate;
+    private OneSpriteStaticActor sound, back;
     private float width, height;
     private float speed = 0.5f;
     private float timer;
     public static int time[], score;
-    OneSpriteStaticActor back;
 
 
     public GameStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -50,18 +51,19 @@ public class GameStage extends MyStage {
         score = 0;
 
         resized();
+        soundgenerate();
 
-        addActor(starRotate= new StarRotate());
-
-        addActor(starRotate= new StarRotate());
-        starRotate.setSize(width,height);
-
-        starRotate.setZIndex(0);
-
-        StarStream.size[0] = width;
-        StarStream.size[1] = height;
-        addActor(starRotate = new StarRotate());
-        //teszt
+        back = new OneSpriteStaticActor(Assets.manager.get(Assets.BACK));
+        back.setSize(100,100);
+        back.setPosition(width - back.getWidth() - sound.getWidth()-10, height - back.getHeight());
+        back.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                game.setScreen(new ScoreScreen(game));
+            }
+        });
+        addActor(back);
 
         ship = new SpaceShip();
         addActor(ship.actor);
@@ -112,11 +114,15 @@ public class GameStage extends MyStage {
         greenPhysics();
         redPhysics();
         backgroundPhysics();
+        sound.setZIndex(Integer.MAX_VALUE);
+        back.setZIndex(Integer.MAX_VALUE);
     }
 
     private void shipPhysics() {
-        if (ship.actor.getX() <= width && ship.actor.getX() >= -1) {
+        if (ship.actor.getX() <= width && ship.actor.getX() >= 0) {
             ship.actor.setX(ship.actor.getX() + Gdx.input.getAccelerometerY());
+            if(ship.actor.getX() < 0) ship.actor.setX(0);
+            if(ship.actor.getX() > width-ship.actor.getWidth()) ship.actor.setX(width-ship.actor.getWidth());
         }
     }
 
@@ -133,6 +139,24 @@ public class GameStage extends MyStage {
 
     private void backgroundPhysics() {
 
+    }
+
+    void soundgenerate(){
+        //SOUND
+        sound = new OneSpriteStaticActor(MenuStage.musicPlay?Assets.manager.get(Assets.SOUND):Assets.manager.get(Assets.NOSOUND));
+        if(MenuStage.musicPlay) MenuScreen.gMusic.setVolume(1f);
+        else MenuScreen.gMusic.setVolume(0f);
+        sound.setSize(100f,100f);
+        sound.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                MenuStage.musicPlay=!MenuStage.musicPlay;
+                soundgenerate();
+            }
+        });
+        sound.setPosition(width-sound.getWidth(),height-sound.getHeight());
+        addActor(sound);
     }
 
     @Override

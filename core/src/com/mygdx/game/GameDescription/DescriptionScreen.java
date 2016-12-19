@@ -41,7 +41,6 @@ public class DescriptionScreen extends MyScreen {
 
     @Override
     public void dispose() {
-        descriptionStage.dispose();
         super.dispose();
     }
 

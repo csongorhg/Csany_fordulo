@@ -42,7 +42,6 @@ public class MenuStage extends MyStage {
 
     public void init()
     {
-
         addBackEventStackListener();
 
         resized();
