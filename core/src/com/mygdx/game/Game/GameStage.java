@@ -11,6 +11,7 @@ import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.Menu.MenuScreen;
 import com.mygdx.game.Menu.MenuStage;
 import com.mygdx.game.Menu.StarStream;
+import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
@@ -27,6 +28,7 @@ import java.util.Vector;
  */
 
 public class GameStage extends MyStage {
+    private float elapsedTime = 0;
     public static final String PREF_COUNT = "PREF_COUNT";
     public static SpaceShip ship;
     public static Vector<BadShip> badships;
@@ -39,11 +41,13 @@ public class GameStage extends MyStage {
     private float timer;
     public static int time[], score;
     public static boolean shoot;
+    private MyLabel hpLabel;
+    private int hp;
+    private  ExplosionActor explosionActor = null;
 
 
     public GameStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
-
     }
 
     @Override
@@ -57,6 +61,10 @@ public class GameStage extends MyStage {
 
         resized();
         soundgenerate();
+        hp = 5;
+        hpLabel = new MyLabel("Hp "+hp+"/5", game.getLabelStyle());
+        hpLabel.setPosition(0, height-hpLabel.getHeight());
+        addActor(hpLabel);
 
         back = new OneSpriteStaticActor(Assets.manager.get(Assets.BACK));
         back.setSize(100,100);
@@ -121,7 +129,22 @@ public class GameStage extends MyStage {
         backgroundPhysics();
         sound.setZIndex(Integer.MAX_VALUE);
         back.setZIndex(Integer.MAX_VALUE);
-
+        hpLabel.setZIndex(Integer.MAX_VALUE);
+        hpLabel.setText("Hp "+hp+"/5");
+        if(hp == 0 && explosionActor==null){
+            explosionActor = new ExplosionActor();
+            explosionActor.setPosition(ship.actor.getX(),ship.actor.getY());
+            ship.actor.remove();
+            addActor(explosionActor);
+        }
+        else if(hp == 0 && elapsedTime < 2){
+            elapsedTime+=delta;
+        }
+        else if (hp == 0 && elapsedTime >= 2){
+            dispose();
+            game.setScreen(new ScoreScreen(game));
+        }
+        if(explosionActor != null) explosionActor.setZIndex(Integer.MAX_VALUE);
     }
 
     private void shipPhysics() {
