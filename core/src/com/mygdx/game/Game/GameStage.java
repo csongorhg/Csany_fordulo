@@ -41,6 +41,7 @@ public class GameStage extends MyStage {
         enemyPhysics();
         greenPhysics();
         redPhysics();
+        backgroundPhysics();
     }
 
     private void shipPhysics() {
@@ -53,6 +54,9 @@ public class GameStage extends MyStage {
     }
 
     private void redPhysics() {
+    }
+
+    private void backgroundPhysics() {
     }
 
 }
