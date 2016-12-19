@@ -3,6 +3,8 @@ package com.mygdx.game.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
@@ -14,6 +16,7 @@ import com.mygdx.game.Physics.Asteroid;
 import com.mygdx.game.Physics.BadShip;
 import com.mygdx.game.Physics.Dot;
 import com.mygdx.game.Physics.SpaceShip;
+import com.mygdx.game.Score.ScoreScreen;
 
 import java.util.Vector;
 
@@ -31,6 +34,9 @@ public class GameStage extends MyStage {
     private StarRotate starRotate;
     private float width, height;
     private float speed = 0.5f;
+    private float timer;
+    public static int time[], score;
+    OneSpriteStaticActor back;
 
 
     public GameStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -39,6 +45,9 @@ public class GameStage extends MyStage {
 
     @Override
     public void init() {
+        time = new int[2];
+        timer=0;
+        score = 0;
 
         resized();
 
@@ -76,6 +85,7 @@ public class GameStage extends MyStage {
         float plusz = (width-width/b.getWidth())/((width/b.getWidth())+2);
         float x = plusz+b.actor.getWidth()/1.5f;
         for (int i = 0; i < width/b.getWidth()-1; i++){
+            System.out.println(i);
             b = new BadShip();
             addActor(b.actor);
             badships.add(b);
@@ -92,6 +102,10 @@ public class GameStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+        timer+=delta;
+        int t = (int)(timer/60*100);
+        time[0] = t/60;
+        time[1] = t%60;
         shipPhysics();
         enemyPhysics();
         greenPhysics();
