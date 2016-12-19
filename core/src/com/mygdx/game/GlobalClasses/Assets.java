@@ -44,8 +44,8 @@ public class Assets {
 
 
 	//MUSIC
-	public static final AssetDescriptor<Music> TESTSOUND
-			= new AssetDescriptor<Music>("Music/startcar.mp3", Music.class);
+	public static final AssetDescriptor<Music> GAMEMUSIC
+			= new AssetDescriptor<Music>("Music/bensound-epic.mp3", Music.class);
 
 
 
@@ -88,7 +88,7 @@ public class Assets {
 
 		manager.load(EXPLOSION_TEXTUREATLAS);
 
-		manager.load(TESTSOUND);
+		manager.load(GAMEMUSIC);
 
 		manager.load(PIXEL_FONT);
 		manager.load(APPLESTORMITA_FONT);
