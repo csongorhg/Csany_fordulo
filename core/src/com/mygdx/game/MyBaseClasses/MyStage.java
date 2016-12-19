@@ -31,7 +31,6 @@ abstract public class MyStage extends Stage implements InitableInterface {
 
     public void addBackEventStackListener()    {
         addListener(new InputListener() {
-
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
                 if(keycode== Input.Keys.BACK) {
@@ -44,6 +43,10 @@ abstract public class MyStage extends Stage implements InitableInterface {
 
     public Actor getLastAdded() {
         return getActors().get(getActors().size-1);
+    }
+
+    @Override
+    public void init() {
     }
 
     public void setCameraZoomXY(float x, float y, float zoom)
@@ -93,7 +96,7 @@ abstract public class MyStage extends Stage implements InitableInterface {
 
     protected void resized(){
         setCameraResetToCenterOfScreen();
-    };
+    }
 
     @Override
     public void act(float delta) {

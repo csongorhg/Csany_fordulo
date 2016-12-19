@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.Menu.MenuScreen;
+import com.mygdx.game.Menu.MenuStage;
 import com.mygdx.game.MyBaseClasses.MyScreen;
 import com.mygdx.game.GlobalClasses.*;
 import com.mygdx.game.MyBaseClasses.OneSpriteAnimatedActor;
@@ -23,7 +24,7 @@ public class LoadingScreen extends MyScreen {
 	private float elapsedTime = 0;
 	private BitmapFont bitmapFont = new BitmapFont();
 	private OneSpriteAnimatedActor picture;
-	private GameMusic gameMusic;
+	public static GameMusic gameMusic;
 	GlyphLayout layout;
 
     public LoadingScreen(MyGdxGame game) {
@@ -82,7 +83,9 @@ public class LoadingScreen extends MyScreen {
 		spriteBatch.end();
 		if (elapsedTime > 2.0 && Assets.manager.update() ) {
 			Assets.afterLoaded();
-			music();
+			//music();
+			MenuStage.musicPlay = true;
+			MenuScreen.gMusic = Assets.manager.get(Assets.GAMEMUSIC);
 			game.setScreen(new MenuScreen(game));
 		}
 
@@ -91,6 +94,7 @@ public class LoadingScreen extends MyScreen {
 	}
 
 	private void music() {
+		MenuStage.musicPlay = true;
 		gameMusic = new GameMusic();
 		gameMusic.addMusic(Assets.manager.get(Assets.GAMEMUSIC));
 		gameMusic.act();
