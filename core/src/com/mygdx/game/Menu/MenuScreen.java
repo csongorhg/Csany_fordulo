@@ -1,6 +1,7 @@
 package com.mygdx.game.Menu;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -17,6 +18,7 @@ public class MenuScreen extends MyScreen {
 
     protected MenuStage menuStage;
     protected MyStage bgStage;
+    public static Music gMusic;
 
 
     public MenuScreen(MyGdxGame game) {
@@ -30,7 +32,7 @@ public class MenuScreen extends MyScreen {
         bgStage.draw();
         menuStage.act(delta);
         menuStage.draw();
-
+        gMusic.play();
     }
 
     @Override
@@ -47,7 +49,6 @@ public class MenuScreen extends MyScreen {
 
     @Override
     public void init() {
-
         menuStage  = new MenuStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), spriteBatch, game);
         Gdx.input.setInputProcessor(menuStage);
 
