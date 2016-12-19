@@ -45,6 +45,7 @@ public class GameStage extends MyStage {
     private MyLabel hpLabel;
     private int hp;
     private  ExplosionActor explosionActor = null;
+    private float[] ran;
 
 
     public GameStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -53,6 +54,8 @@ public class GameStage extends MyStage {
 
     @Override
     public void init() {
+
+
 
         shoot = false;
 
@@ -95,6 +98,12 @@ public class GameStage extends MyStage {
 
         generateBadShips();
         generateAsteroids();
+
+        ran = new float[badships.size()];
+        ran[0] = 0.5f; //ehez viszonyítja az új hullámot
+        for (int i = 1; i < ran.length; i++) {
+            ran[i] = (float)(Math.random()*(speed*5-speed*2+2f)+speed*2);
+        }
     }
 
     private void generateBadShips() {
@@ -102,7 +111,6 @@ public class GameStage extends MyStage {
         float plusz = (width-width/b.getWidth())/((width/b.getWidth())+2);
         float x = plusz+b.actor.getWidth()/1.5f;
         for (int i = 0; i < width/b.getWidth()-1; i++){
-            System.out.println(i);
             b = new BadShip();
             addActor(b.actor);
             badships.add(b);
@@ -157,7 +165,8 @@ public class GameStage extends MyStage {
 
     private void enemyPhysics() {
         for (int i = 0; i < badships.size() ; i++){
-            badships.get(i).actor.setY(badships.get(i).actor.getY()-speed);
+            System.out.println(ran[i]);
+            badships.get(i).actor.setY(badships.get(i).actor.getY()-ran[i]);
             if(i == badshipcounter && Math.random() > 0.95){
                 Dot d = new Dot(false);
                 reddot.add(d);
