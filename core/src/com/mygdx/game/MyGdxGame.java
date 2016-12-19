@@ -36,7 +36,7 @@ public class MyGdxGame extends Game {
 		return style;
 	}
 
-	public TextField.TextFieldStyle getTextFieldStyle() {
+	/*public TextField.TextFieldStyle getTextFieldStyle() {
 		TextField.TextFieldStyle style = new TextField.TextFieldStyle();
 		style.background = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEST_TEXTURE)));
 		style.background.setLeftWidth(style.background.getLeftWidth()+20);
@@ -50,7 +50,7 @@ public class MyGdxGame extends Game {
 		p.fill();
 		style.selection = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
 		return style;
-	}
+	}*/
 
 
 	public TextButton.TextButtonStyle getTextButtonStyle() {
