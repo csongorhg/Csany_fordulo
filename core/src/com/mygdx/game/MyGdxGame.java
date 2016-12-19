@@ -41,7 +41,7 @@ public class MyGdxGame extends Game {
 		style.background = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.TEST_TEXTURE)));
 		style.background.setLeftWidth(style.background.getLeftWidth()+20);
 		style.background.setRightWidth(style.background.getRightWidth()+20);
-		style.font = Assets.manager.get(Assets.PIXEL_FONT);
+		style.font = Assets.manager.get(Assets.APPLESTORMITA_FONT);
 		style.cursor = new TextureRegionDrawable(new TextureRegion(new TextureRegion(Assets.manager.get(Assets.TEST_TEXTURE))));
 		style.cursor.setMinWidth(50);
 		style.fontColor = Color.BLACK;

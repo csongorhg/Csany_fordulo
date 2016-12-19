@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ObjectSet;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.Menu.MenuScreen;
+import com.mygdx.game.Menu.MenuStage;
 import com.mygdx.game.MyGdxGame;
 
 /**
@@ -76,7 +78,7 @@ abstract public class MyScreen implements Screen, InitableInterface {
 
     @Override
     public void show() {
-
+        MenuScreen.gMusic = Assets.manager.get(Assets.GAMEMUSIC);
     }
 
     public Game getGame() {

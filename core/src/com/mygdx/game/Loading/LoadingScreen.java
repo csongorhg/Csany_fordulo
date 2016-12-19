@@ -83,7 +83,6 @@ public class LoadingScreen extends MyScreen {
 		spriteBatch.end();
 		if (elapsedTime > 2.0 && Assets.manager.update() ) {
 			Assets.afterLoaded();
-			//music();
 			MenuStage.musicPlay = true;
 			MenuScreen.gMusic = Assets.manager.get(Assets.GAMEMUSIC);
 			game.setScreen(new MenuScreen(game));
@@ -93,12 +92,6 @@ public class LoadingScreen extends MyScreen {
 
 	}
 
-	private void music() {
-		MenuStage.musicPlay = true;
-		gameMusic = new GameMusic();
-		gameMusic.addMusic(Assets.manager.get(Assets.GAMEMUSIC));
-		gameMusic.act();
-	}
 
 	@Override
 	public void hide() {
