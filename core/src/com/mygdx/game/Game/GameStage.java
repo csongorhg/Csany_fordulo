@@ -40,6 +40,7 @@ public class GameStage extends MyStage {
     private float speed = 0.5f;
     private float timer;
     public static int time[], score;
+    private int badshipcounter = 0;
     public static boolean shoot;
     private MyLabel hpLabel;
     private int hp;
@@ -126,7 +127,6 @@ public class GameStage extends MyStage {
         enemyPhysics();
         greenPhysics();
         redPhysics();
-        backgroundPhysics();
         sound.setZIndex(Integer.MAX_VALUE);
         back.setZIndex(Integer.MAX_VALUE);
         hpLabel.setZIndex(Integer.MAX_VALUE);
@@ -157,7 +157,17 @@ public class GameStage extends MyStage {
 
     private void enemyPhysics() {
         for (int i = 0; i < badships.size() ; i++){
+            badships.get(i).actor.setY(badships.get(i).actor.getY()-speed);
+            if(i == badshipcounter && Math.random() > 0.95){
+                Dot d = new Dot(false);
+                reddot.add(d);
+                addActor(d.actor);
+                d.actor.setPosition(badships.get(i).actor.getWidth()/2+badships.get(i).actor.getX(),badships.get(i).actor.getY());
+                badships.get(i);
+            }
         }
+        badshipcounter++;
+        if(badshipcounter> badships.size()) badshipcounter = 0;
     }
 
     private void greenPhysics() {
@@ -175,10 +185,9 @@ public class GameStage extends MyStage {
     }
 
     private void redPhysics() {
-    }
-
-    private void backgroundPhysics() {
-
+        for (int i = 0; i < reddot.size() ; i++){
+            reddot.get(i).actor.setY(reddot.get(i).actor.getY()-speed*5);
+        }
     }
 
     void soundgenerate(){
