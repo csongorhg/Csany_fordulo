@@ -14,6 +14,7 @@ import com.mygdx.game.Game.GameScreen;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.Menu.MenuScreen;
 import com.mygdx.game.Menu.MenuStage;
+import com.mygdx.game.Menu.StarStream;
 import com.mygdx.game.MyBaseClasses.MyButton;
 import com.mygdx.game.MyBaseClasses.MyLabel;
 import com.mygdx.game.MyBaseClasses.MyStage;
@@ -30,7 +31,7 @@ public class DescriptionStage extends MyStage {
     private String s;
     private float width, height;
     private OneSpriteStaticActor sound, back;
-
+    private StarStream starStream;
 
 
 
@@ -53,7 +54,18 @@ public class DescriptionStage extends MyStage {
 
         s = "Game instruction:\n\r-----------------\n\rYou can control the spaceship\n\rby turning the device left or right.\n\rYou can shoot the enemies\n\rby clicking on the screen\n\r(the spaceship can only shoot forward).";
         resized();
+
+        addActor(starStream= new StarStream());
+        starStream.setX(getViewport().getWorldWidth()-starStream.getWidth());
+        starStream.setSize(width,height);
+        starStream.setZIndex(0);
+
+        StarStream.size[0] = width;
+        StarStream.size[1] = height;
+
         soundgenerate();
+
+
 
         back = new OneSpriteStaticActor(Assets.manager.get(Assets.BACK));
         back.setSize(100,100);
@@ -65,10 +77,12 @@ public class DescriptionStage extends MyStage {
                 game.setScreenBackByStackPop();
             }
         });
+        back.setZIndex(1);
         addActor(back);
 
         myLabel = new MyLabel(s, game.getLabelStyle());
         addActor(myLabel);
+        myLabel.setZIndex(1);
         myLabel.setPosition(width/2-myLabel.getWidth()/2, height/2-myLabel.getHeight()/2);
     }
 
@@ -93,6 +107,7 @@ public class DescriptionStage extends MyStage {
             }
         });
         sound.setPosition(width-sound.getWidth(),height-sound.getHeight());
+        sound.setZIndex(1);
         addActor(sound);
     }
 

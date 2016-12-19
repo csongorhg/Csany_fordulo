@@ -3,7 +3,6 @@ package com.mygdx.game.Menu;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
-import com.sun.glass.ui.Menu;
 
 /**
  * Created by tanulo on 2016. 12. 19..
