@@ -3,6 +3,7 @@ package com.mygdx.game.Menu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -32,6 +33,7 @@ public class MenuStage extends MyStage {
     private OneSpriteStaticActor play, credits, exit;
     private float width, height;
     public OneSpriteStaticActor sound;
+    private StarStream starStream;
 
     public MenuStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -44,6 +46,16 @@ public class MenuStage extends MyStage {
         addBackEventStackListener();
 
         resized();
+
+        addActor(starStream= new StarStream());
+        starStream.setX(getViewport().getWorldWidth()-starStream.getWidth());
+        starStream.setSize(width,height);
+        starStream.setZIndex(0);
+
+        StarStream.size[0] = width;
+        StarStream.size[1] = height;
+
+
 
         soundgenerate();
 
@@ -59,6 +71,7 @@ public class MenuStage extends MyStage {
                 game.setScreen(new GameScreen(game) );
             }
         });
+        play.setZIndex(1);
         addActor(play);
 
 
@@ -74,6 +87,7 @@ public class MenuStage extends MyStage {
                 game.setScreen(new DescriptionScreen(game));
             }
         });
+        credits.setZIndex(1);
         addActor(credits);
 
 
@@ -89,11 +103,12 @@ public class MenuStage extends MyStage {
                 Gdx.app.exit();
                 }
         });
+        exit.setZIndex(1);
         addActor(exit);
 
 
-
     }
+
 
     void soundgenerate(){
         //SOUND

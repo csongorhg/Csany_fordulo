@@ -5,7 +5,10 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.GlobalClasses.Assets;
+import com.mygdx.game.Menu.StarStream;
 import com.mygdx.game.MyBaseClasses.MyStage;
+import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Physics.BadShip;
 import com.mygdx.game.Physics.Dot;
@@ -23,8 +26,9 @@ public class GameStage extends MyStage {
     public static Vector<BadShip> badships;
     public static Vector<Dot> reddot;
     public static Vector<Dot> greendot;
+    private OneSpriteStaticActor starRotate;
+    private float width, height;
 
-    public static float width,height;
 
     public GameStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -32,8 +36,15 @@ public class GameStage extends MyStage {
 
     @Override
     public void init() {
-        width = (((ExtendViewport)getViewport()).getWorldWidth());
-        height = ((getViewport()).getWorldHeight());
+        /*addActor(starRotate= new StarRotate());
+        starRotate.setSize(width,height);
+        starRotate.setX(getViewport().getWorldWidth()/2);
+
+        starRotate.setZIndex(0);
+
+        StarStream.size[0] = width;
+        StarStream.size[1] = height;*/
+        addActor(starRotate = new OneSpriteStaticActor(Assets.manager.get(Assets.STAR)));
 
         ship = new SpaceShip();
         addActor(ship.actor);
@@ -42,6 +53,7 @@ public class GameStage extends MyStage {
         badships = new Vector<BadShip>();
         greendot = new Vector<Dot>();
         reddot = new Vector<Dot>();
+
     }
 
     @Override
@@ -68,6 +80,15 @@ public class GameStage extends MyStage {
     }
 
     private void backgroundPhysics() {
+
+    }
+
+    @Override
+    protected void resized() {
+        super.resized();
+        setCameraResetToLeftBottomOfScreen();
+        width = (((ExtendViewport)getViewport()).getWorldWidth());
+        height = ((getViewport()).getWorldHeight());
     }
 
 }

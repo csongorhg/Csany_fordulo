@@ -1,5 +1,6 @@
 package com.mygdx.game.GameDescription;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Game.GameScreen;
 import com.mygdx.game.GlobalClasses.Assets;
 import com.mygdx.game.Menu.MenuScreen;
 import com.mygdx.game.Menu.MenuStage;
@@ -27,13 +29,22 @@ public class DescriptionStage extends MyStage {
     private MyLabel myLabel;
     private String s;
     private float width, height;
-    private OneSpriteStaticActor sound;
+    private OneSpriteStaticActor sound, back;
 
 
 
 
     public DescriptionStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
+    }
+
+    @Override
+    public boolean keyDown(int keyCode) {
+        if (keyCode == Input.Keys.BACK)
+        {
+            game.setScreen(new MenuScreen(game));
+        }
+        return false;
     }
 
 
@@ -44,20 +55,21 @@ public class DescriptionStage extends MyStage {
         resized();
         soundgenerate();
 
-        myLabel = new MyLabel(s, game.getLabelStyle());
-        addActor(myLabel);
-        myLabel.setPosition(width/2-myLabel.getWidth()/2, height/2-myLabel.getHeight()/2);
-
-        textButton = new MyButton("Back", game.getTextButtonStyle());
-        textButton.addListener(new ClickListener(){
+        back = new OneSpriteStaticActor(Assets.manager.get(Assets.BACK));
+        back.setSize(100,100);
+        back.setPosition(width - back.getWidth() - sound.getWidth()-10, height - back.getHeight());
+        back.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.setScreenBackByStackPop();
             }
         });
-        addActor(textButton);
-        textButton.setPosition(width/2 - textButton.getWidth()/2, 0);
+        addActor(back);
+
+        myLabel = new MyLabel(s, game.getLabelStyle());
+        addActor(myLabel);
+        myLabel.setPosition(width/2-myLabel.getWidth()/2, height/2-myLabel.getHeight()/2);
     }
 
     @Override

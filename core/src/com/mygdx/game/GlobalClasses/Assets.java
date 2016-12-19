@@ -20,15 +20,15 @@ public class Assets {
 	public static final String CHARS = "0123456789öüóqwertzuiopőúasdfghjkléáűíyxcvbnm'+!%/=()ÖÜÓQWERTZUIOPŐÚASDFGHJKLÉÁŰÍYXCVBNM?:_*<>#&@{}[],-.";
 
 	//FONT
-	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameter = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+	/*static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameter = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 	static {
 		fontParameter.fontFileName = "Font/Pixelfont.ttf";
-		fontParameter.fontParameters.size = 50;
+		fontParameter.fontParameters.size = 100;
 		fontParameter.fontParameters.characters = CHARS;
 		fontParameter.fontParameters.color = Color.WHITE;
 	}
 	public static final AssetDescriptor<BitmapFont> PIXEL_FONT
-			= new AssetDescriptor<BitmapFont>(fontParameter.fontFileName, BitmapFont.class, fontParameter);
+			= new AssetDescriptor<BitmapFont>(fontParameter.fontFileName, BitmapFont.class, fontParameter);*/
 
 
 	static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameter2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
@@ -56,8 +56,10 @@ public class Assets {
 
 
 	//TEXTURE
+	public static final AssetDescriptor<Texture> TEST_TEXTURE
+			= new AssetDescriptor<Texture>("TestImg/ratyitutu.png", Texture.class);
 	public static final AssetDescriptor<Texture> BACKGROUND
-			= new AssetDescriptor<Texture>("Play/space.png", Texture.class);
+			= new AssetDescriptor<Texture>("TestImg/background.png", Texture.class);
 	public static final AssetDescriptor<Texture> PLAY
 			= new AssetDescriptor<Texture>("Menu/play.png", Texture.class);
 	public static final AssetDescriptor<Texture> SETTINGS
@@ -80,6 +82,8 @@ public class Assets {
 			= new AssetDescriptor<Texture>("Menu/sound.png", Texture.class);
 	public static final AssetDescriptor<Texture> NOSOUND
 			= new AssetDescriptor<Texture>("Menu/nosound.png", Texture.class);
+	public static final AssetDescriptor<Texture> STAR
+			= new AssetDescriptor<Texture>("Play/space.png", Texture.class);
 
 
 
@@ -94,12 +98,14 @@ public class Assets {
 		manager.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(resolver));
 		manager.setLoader(BitmapFont.class, ".otf", new FreetypeFontLoader(resolver));
 
+		manager.load(TEST_TEXTURE);
 		manager.load(BACKGROUND);
 		manager.load(PLAY);
 		manager.load(SETTINGS);
 		manager.load(EXIT);
 		manager.load(MYSHIP);
 		manager.load(ASTEROIDA);
+		manager.load(STAR);
 		manager.load(BADSHIP);
 		manager.load(GREENDOT);
 		manager.load(REDDOT);
@@ -112,7 +118,7 @@ public class Assets {
 
 		manager.load(GAMEMUSIC);
 
-		manager.load(PIXEL_FONT);
+		//manager.load(PIXEL_FONT);
 		manager.load(APPLESTORMITA_FONT);
 	}
 
