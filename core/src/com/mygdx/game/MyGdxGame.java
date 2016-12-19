@@ -123,6 +123,8 @@ public class MyGdxGame extends Game {
 		}
 	}
 
+	public void setBackButtonStack(){ backButtonStack.clear();}
+
 
 	public void setScreen(Screen screen, boolean pushToStack) {
 		Screen prevScreen = getScreen();

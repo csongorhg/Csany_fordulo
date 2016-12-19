@@ -3,6 +3,8 @@ package com.mygdx.game.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.GlobalClasses.Assets;
@@ -14,6 +16,7 @@ import com.mygdx.game.Physics.Asteroid;
 import com.mygdx.game.Physics.BadShip;
 import com.mygdx.game.Physics.Dot;
 import com.mygdx.game.Physics.SpaceShip;
+import com.mygdx.game.Score.ScoreScreen;
 
 import java.util.Vector;
 
@@ -32,6 +35,7 @@ public class GameStage extends MyStage {
     private float width, height;
     private float timer;
     public static int time[], score;
+    OneSpriteStaticActor back;
 
 
     public GameStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -45,6 +49,19 @@ public class GameStage extends MyStage {
         score = 0;
 
         resized();
+
+        back = new OneSpriteStaticActor(Assets.manager.get(Assets.BACK));
+        back.setSize(100,100);
+        back.setPosition(0,0);
+        back.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                game.setScreen(new ScoreScreen(game));
+            }
+        });
+        back.setZIndex(100);
+        addActor(back);
 
         addActor(starRotate= new StarRotate());
 
