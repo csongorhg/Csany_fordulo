@@ -30,6 +30,7 @@ public class GameStage extends MyStage {
     public static Vector<Dot> greendot;
     private StarRotate starRotate;
     private float width, height;
+    private float speed = 0.5f;
 
 
     public GameStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -55,11 +56,11 @@ public class GameStage extends MyStage {
         ship = new SpaceShip();
         addActor(ship.actor);
         float arany = (width/5.0f)/ship.actor.getHeight()/4;
-        Dot.arany = arany/2;
-        BadShip.arany = arany/2;
+        Dot.arany = arany/1.5f;
+        BadShip.arany = arany/1.5f;
 
         ship.actor.setSize(ship.getWidth()*arany,ship.getHeight()*arany);
-        ship.actor.setPosition(width/2-(ship.actor.getWidth()*arany)/2,(height/5));
+        ship.actor.setPosition(width/2-(ship.actor.getWidth()*arany)/2,(height/10));
 
         badships = new Vector<BadShip>();
         greendot = new Vector<Dot>();
@@ -72,15 +73,15 @@ public class GameStage extends MyStage {
 
     private void generateBadShips() {
         BadShip b = new BadShip();
-        float x = b.getWidth()/4;
+        float plusz = (width-width/b.getWidth())/((width/b.getWidth())+2);
+        float x = plusz+b.actor.getWidth()/1.5f;
         for (int i = 0; i < width/b.getWidth()-1; i++){
-            System.out.println(i);
             b = new BadShip();
             addActor(b.actor);
             badships.add(b);
             b.actor.setSize(b.getWidth(),b.getHeight());
             b.actor.setPosition(x,height-b.getHeight());
-            x += b.getWidth();
+            x += plusz+b.actor.getWidth()/1.5f;
         }
     }
 
@@ -105,6 +106,8 @@ public class GameStage extends MyStage {
     }
 
     private void enemyPhysics() {
+        for (int i = 0; i < badships.size() ; i++){
+        }
     }
 
     private void greenPhysics() {
