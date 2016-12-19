@@ -1,5 +1,7 @@
 package com.mygdx.game.Physics;
 
+import com.mygdx.game.MyBaseClasses.OneSpriteStaticActor;
+
 /**
  * Created by tanulo on 2016. 12. 19..
  */
@@ -27,5 +29,12 @@ public class Pont {
 
     public float getY() {
         return y;
+    }
+
+    public static boolean utkozik(OneSpriteStaticActor a, OneSpriteStaticActor b){
+        if(a.getY() > b.getY() + b.getHeight() || a.getY()+ a.getHeight() < b.getY() || a.getX() > b.getX() + b.getWidth() || a.getX()+ a.getWidth() < b.getX()){
+            return false;
+        }
+        return true;
     }
 }

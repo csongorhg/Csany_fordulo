@@ -18,6 +18,7 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.Physics.Asteroid;
 import com.mygdx.game.Physics.BadShip;
 import com.mygdx.game.Physics.Dot;
+import com.mygdx.game.Physics.Pont;
 import com.mygdx.game.Physics.SpaceShip;
 import com.mygdx.game.Score.ScoreScreen;
 
@@ -115,7 +116,7 @@ public class GameStage extends MyStage {
             addActor(b.actor);
             badships.add(b);
             b.actor.setSize(b.getWidth(),b.getHeight());
-            b.actor.setPosition(x,height-b.getHeight());
+            b.actor.setPosition(x,height);
             x += plusz+b.actor.getWidth()/1.5f;
         }
     }
@@ -131,24 +132,26 @@ public class GameStage extends MyStage {
         int t = (int)(timer/60*100);
         time[0] = t/60;
         time[1] = t%60;
-        shipPhysics();
-        enemyPhysics();
-        greenPhysics();
-        redPhysics();
+        if(hp>=1) {
+            shipPhysics();
+            enemyPhysics();
+            greenPhysics();
+            redPhysics();
+        }
         sound.setZIndex(Integer.MAX_VALUE);
         back.setZIndex(Integer.MAX_VALUE);
         hpLabel.setZIndex(Integer.MAX_VALUE);
-        hpLabel.setText("Hp "+hp+"/5");
+        if(hp >= 0)hpLabel.setText("Hp "+hp+"/5");
         if(hp == 0 && explosionActor==null){
             explosionActor = new ExplosionActor();
             explosionActor.setPosition(ship.actor.getX(),ship.actor.getY());
             ship.actor.remove();
             addActor(explosionActor);
         }
-        else if(hp == 0 && elapsedTime < 2){
+        else if(hp <= 0 && elapsedTime < 2){
             elapsedTime+=delta;
         }
-        else if (hp == 0 && elapsedTime >= 2){
+        else if (hp <= 0 && elapsedTime >= 2){
             dispose();
             game.setScreen(new ScoreScreen(game));
         }
@@ -160,14 +163,40 @@ public class GameStage extends MyStage {
             ship.actor.setX(ship.actor.getX() + Gdx.input.getAccelerometerY());
             if(ship.actor.getX() < 0) ship.actor.setX(0);
             if(ship.actor.getX() > width-ship.actor.getWidth()) ship.actor.setX(width-ship.actor.getWidth());
+            for(int j = 0; j < reddot.size(); j++){
+                if(Pont.utkozik(reddot.get(j).actor,ship.actor)){
+                    reddot.get(j).actor.remove();
+                    reddot.remove(j);
+                    hp--;
+                }
+            }
         }
     }
 
     private void enemyPhysics() {
+        try {
+            if (badships.get(0).actor.getY() < 0 || badships.size() <= 0) {
+                if (badships.size() != 0) hp--;
+                for (int i = 0; i < badships.size(); i++) {
+                    badships.get(i).actor.remove();
+                }
+                badships = new Vector<BadShip>();
+                generateBadShips();
+            }
+        }catch(Exception e){
+            badships = new Vector<BadShip>();
+            generateBadShips();
+        }
         for (int i = 0; i < badships.size() ; i++){
-            System.out.println(ran[i]);
-            badships.get(i).actor.setY(badships.get(i).actor.getY()-ran[i]);
-            if(i == badshipcounter && Math.random() > 0.95){
+            badships.get(i).actor.setY(badships.get(i).actor.getY()-speed);
+            for(int j = 0; j < greendot.size(); j++){
+                if(Pont.utkozik(greendot.get(j).actor,badships.get(i).actor)){
+                    badships.get(i).actor.remove();
+                    badships.remove(i);
+                    score++;
+                }
+            }
+            if(i == badshipcounter && Math.random() > 0.97){
                 Dot d = new Dot(false);
                 reddot.add(d);
                 addActor(d.actor);
@@ -189,7 +218,7 @@ public class GameStage extends MyStage {
         }
         for (int i = 0; i < greendot.size(); i++) {
             greendot.get(i).actor.setZIndex(0);
-            greendot.get(i).actor.setY(greendot.get(i).actor.getY()+1);
+            greendot.get(i).actor.setY(greendot.get(i).actor.getY()+speed*5);
         }
     }
 

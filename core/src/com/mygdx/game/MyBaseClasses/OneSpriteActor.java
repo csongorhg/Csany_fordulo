@@ -20,7 +20,7 @@ abstract public class OneSpriteActor extends MyActor implements InitableInterfac
     public void init()
     {
         setSize(sprite.getWidth(), sprite.getHeight());
-        debug();
+
     }
 
     @Override
