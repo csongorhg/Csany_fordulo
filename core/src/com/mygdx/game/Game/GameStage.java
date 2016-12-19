@@ -1,7 +1,9 @@
 package com.mygdx.game.Game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.MyBaseClasses.MyStage;
 import com.mygdx.game.MyGdxGame;
@@ -22,6 +24,7 @@ public class GameStage extends MyStage {
     public static Vector<Dot> reddot;
     public static Vector<Dot> greendot;
 
+    public static float width,height;
 
     public GameStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -29,7 +32,13 @@ public class GameStage extends MyStage {
 
     @Override
     public void init() {
+        width = (((ExtendViewport)getViewport()).getWorldWidth());
+        height = ((getViewport()).getWorldHeight());
+
         ship = new SpaceShip();
+        addActor(ship.actor);
+        ship.actor.setPosition(width/2-ship.actor.getWidth()/2,height/10*9);
+
         badships = new Vector<BadShip>();
         greendot = new Vector<Dot>();
         reddot = new Vector<Dot>();
@@ -37,6 +46,7 @@ public class GameStage extends MyStage {
 
     @Override
     public void act(float delta) {
+        super.act(delta);
         shipPhysics();
         enemyPhysics();
         greenPhysics();
@@ -45,6 +55,7 @@ public class GameStage extends MyStage {
     }
 
     private void shipPhysics() {
+        ship.actor.setX(ship.actor.getX() + Gdx.input.getAccelerometerX());
     }
 
     private void enemyPhysics() {
