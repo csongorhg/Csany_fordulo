@@ -61,6 +61,7 @@ public class GameStage extends MyStage {
         StarStream.size[0] = width;
         StarStream.size[1] = height;
         addActor(starRotate = new StarRotate());
+        //teszt
 
         ship = new SpaceShip();
         addActor(ship.actor);
